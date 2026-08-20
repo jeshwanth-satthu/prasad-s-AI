@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Noto Sans Telugu", sans-serif;
+  --font-body: "Inter", "Noto Sans Telugu", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-telugu: "Noto Sans Telugu", sans-serif;
+
+  --color-bg: #08080d;
+  --color-surface: #121218;
+  --color-surface-2: #191921;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-text: #f3f2f7;
+  --color-text-dim: #9997a8;
+  --color-text-faint: #6b6978;
+
+  --color-gold: #f2a93b;
+  --color-gold-dim: #b8802a;
+  --color-violet: #7c6cf0;
+  --color-violet-dim: #5b4dc4;
+  --color-teal: #3fd6c0;
+  --color-danger: #ef5a76;
+}
+
+html { background: var(--color-bg); color-scheme: dark; }
+body { background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--color-gold); color: #08080d; }
+* { scrollbar-width: thin; scrollbar-color: #2a2a35 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 8px; }
+
+.font-display { font-family: var(--font-display); }
+.font-telugu { font-family: var(--font-telugu); }
+.font-mono { font-family: var(--font-mono); }
+
+.bg-grain {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(20px);
+}
+
+.glow-gold { box-shadow: 0 0 0 1px rgba(242,169,59,0.15), 0 8px 40px -12px rgba(242,169,59,0.25); }
+.glow-violet { box-shadow: 0 0 0 1px rgba(124,108,240,0.15), 0 8px 40px -12px rgba(124,108,240,0.3); }
+
+.text-gradient {
+  background: linear-gradient(115deg, #f2a93b 0%, #f2cf8a 40%, #7c6cf0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-2%, 3%) scale(1.05); }
+}
+.animate-drift { animation: drift 18s ease-in-out infinite; }
+
+@keyframes dash { to { stroke-dashoffset: 0; } }
+.animate-dash { stroke-dasharray: 6 8; stroke-dashoffset: 400; animation: dash 12s linear infinite; }
+
+@keyframes count-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.focus-ring { outline: none; }
+.focus-ring:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 2px; }
